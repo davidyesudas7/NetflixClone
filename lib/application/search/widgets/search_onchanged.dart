@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_card.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_title_text.dart';
+import 'package:nextflix_clone/domain/search/onsearch_entity.dart';
 
 class SearchOnchangedWidget extends StatelessWidget {
-  const SearchOnchangedWidget({super.key});
+  final List<OnSearchEntity> posterlist;
+  const SearchOnchangedWidget({super.key, required this.posterlist});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,12 @@ class SearchOnchangedWidget extends StatelessWidget {
           crossAxisSpacing: 5,
           mainAxisSpacing: 5,
           childAspectRatio: 3 / 4,
-          children: List.generate(20, (index) => const MainCard()),
+          children: List.generate(
+              posterlist.length,
+              (index) => MainCard(
+                    posterimage:
+                        '$imagestraturl${posterlist[index].posterPath}',
+                  )),
         ),
       ]),
     );

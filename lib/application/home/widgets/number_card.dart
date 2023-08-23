@@ -18,6 +18,7 @@ class NumberCard extends StatelessWidget {
             child: Text(
               '${index + 1}',
               style: const TextStyle(
+                letterSpacing: -25,
                 color: Colors.black,
                 fontSize: 100,
                 fontWeight: FontWeight.bold,

@@ -27,6 +27,7 @@ class Homescreen extends StatelessWidget {
             } else {
               return scrollnotifier.value = true;
             }
+            //'https://image.tmdb.org/t/p/original/e3NBGiAifW9Xt8xD5tpARskjccO.jpg'
           },
           child: Stack(
             children: [

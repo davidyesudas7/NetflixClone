@@ -7,7 +7,6 @@ import 'package:nextflix_clone/application/search/bloc/search_bloc.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -24,11 +23,14 @@ class SearchIdleWidget extends StatelessWidget {
               );
             } else if (state is SearchInitializedState) {
               return ListView.separated(
-                  itemBuilder: (context, index) => SearchIdleCard(
-                        posterimage:
-                            '$imagestraturl${state.initialdata[index]!.posterpath}',
-                        title: state.initialdata[index]!.maintitle,
-                      ),
+                  itemBuilder: (context, index) {
+                    print(state.initialdata[index]!.maintitle.toString());
+                    return SearchIdleCard(
+                      posterimage:
+                          '$imagestraturl${state.initialdata[index]!.posterpath}',
+                      title: state.initialdata[index]!.maintitle,
+                    );
+                  },
                   separatorBuilder: (context, index) => kHeight,
                   itemCount: state.initialdata.length);
             } else if (state is SearchError) {
@@ -72,10 +74,12 @@ class SearchIdleCard extends StatelessWidget {
           ),
         ),
         kWidth,
-        Text(
-          title,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+        Expanded(
+          child: Text(
+            title,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+          ),
         ),
         const CircleAvatar(
           radius: 17,

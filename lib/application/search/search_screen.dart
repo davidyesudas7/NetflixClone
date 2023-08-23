@@ -6,6 +6,7 @@ import 'package:nextflix_clone/application/common_widgets&constants/avatar.dart'
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 import 'package:nextflix_clone/application/search/bloc/search_bloc.dart';
 import 'package:nextflix_clone/application/search/widgets/search_idle.dart';
+import 'package:nextflix_clone/application/search/widgets/search_onchanged.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -41,7 +42,29 @@ class SearchScreen extends StatelessWidget {
             ),
             kHeight20,
             // SearchIdleWidget()
-            const SearchIdleWidget()
+            BlocBuilder<SearchBloc, SearchState>(
+              builder: (context, state) {
+                if (state is Searchloading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is OnSearchloaded) {
+                  if (state.onserachdata.isEmpty) {
+                    return const SearchIdleWidget();
+                  } else {
+                    return SearchOnchangedWidget(
+                      posterlist: state.onserachdata,
+                    );
+                  }
+                } else if (state is SearchError) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else {
+                  return const SearchIdleWidget();
+                }
+              },
+            )
           ],
         ),
       ),

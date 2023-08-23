@@ -10,6 +10,7 @@ class MainTitleCard extends StatelessWidget {
     super.key,
     required this.title,
   });
+
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,12 @@ class MainTitleCard extends StatelessWidget {
             maxHeight: 150,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: List.generate(10, (index) => const MainCard()),
+              children: List.generate(
+                  10,
+                  (index) => const MainCard(
+                        posterimage:
+                            'https://image.tmdb.org/t/p/original/e3NBGiAifW9Xt8xD5tpARskjccO.jpg',
+                      )),
             ),
           ),
           kHeight

@@ -16,8 +16,13 @@ class DownloadPosterRepoImpl implements DownloadPosterRepo {
   Future<Either<Failure, List<DownloadPosterEntity>>> getposterdata() async {
     try {
       final result = await datasource.getremotedownloadposter();
+      List<DownloadPosterEntity> posterlist = [];
+      for (var posteresult in result.results) {
+        if (posteresult.title.isNotEmpty) {
+          posterlist.add(posteresult);
+        }
+      }
 
-      final posterlist = result.results;
       return right(posterlist);
     } on ServerException catch (_) {
       return left(ServerFailure());

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:nextflix_clone/core/exceptions.dart';
 import 'package:nextflix_clone/data/search/datasource.dart/onseach_remot_data.dart';
 
@@ -21,6 +22,7 @@ class OnSearchRepoImpl implements OnsearchRepo {
     } on ServerException catch (_) {
       return left(ServerFailure());
     } catch (e) {
+      debugPrint(e.toString());
       return left(GeneralaFailure());
     }
   }

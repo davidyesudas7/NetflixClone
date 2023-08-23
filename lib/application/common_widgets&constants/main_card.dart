@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 
 class MainCard extends StatelessWidget {
+  final String posterimage;
   const MainCard({
     super.key,
+    required this.posterimage,
   });
 
   @override
@@ -14,10 +16,9 @@ class MainCard extends StatelessWidget {
       width: 100,
       decoration: BoxDecoration(
           color: Colors.red,
-          image: const DecorationImage(
-            fit: BoxFit.fill,
-            image: NetworkImage(
-                'https://image.tmdb.org/t/p/original/e3NBGiAifW9Xt8xD5tpARskjccO.jpg'),
+          image: DecorationImage(
+            fit: BoxFit.fitHeight,
+            image: NetworkImage(posterimage),
           ),
           borderRadius: kBorderradius10),
     );
