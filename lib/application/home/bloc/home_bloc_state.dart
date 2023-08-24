@@ -12,11 +12,19 @@ final class HomeBlocInitial extends HomeBlocState {}
 final class HomeBlocloadingState extends HomeBlocState {}
 
 final class HomeBlocPosterlistState extends HomeBlocState {
-  final List<HomePagePosterEntity> posterlist;
+  final List<HomePagePosterEntity> trendinglist;
+  final List<HomePagePosterEntity> tvlist;
+  final List<HomePagePosterEntity> movielist;
+  final List<HomePagePosterEntity> popularlist;
 
-  const HomeBlocPosterlistState({required this.posterlist});
+  const HomeBlocPosterlistState({
+    required this.trendinglist,
+    required this.tvlist,
+    required this.movielist,
+    required this.popularlist,
+  });
   @override
-  List<Object> get props => [posterlist];
+  List<Object> get props => [trendinglist, tvlist, movielist, popularlist];
 }
 
 final class HomeBlocErrorState extends HomeBlocState {

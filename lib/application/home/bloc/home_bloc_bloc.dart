@@ -13,21 +13,24 @@ class HomeBlocBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
       : super(HomeBlocInitial()) {
     on<HomeBlocDataCallinEvent>((event, emit) async {
       emit(HomeBlocloadingState());
-      final List<HomePagePosterEntity> posterlist = [];
+      final List<HomePagePosterEntity> trendinglist = [];
+      final List<HomePagePosterEntity> tvlist = [];
+      final List<HomePagePosterEntity> movielist = [];
+      final List<HomePagePosterEntity> popularlist = [];
       final newtvlist = await homePagePosterUsecase.getTrendingposter();
       newtvlist.fold(
           (failure) => emit(HomeBlocErrorState(message: _mapfailure(failure))),
           (trending) {
-        posterlist.add(trending);
-        HomeBlocPosterlistState(posterlist: posterlist);
+        trendinglist.clear();
+        trendinglist.add(trending);
       });
 
       final newmovielist = await homePagePosterUsecase.getTvposter();
       newmovielist.fold(
           (failure) => emit(HomeBlocErrorState(message: _mapfailure(failure))),
           (tv) {
-        posterlist.add(tv);
-        emit(HomeBlocPosterlistState(posterlist: posterlist));
+        tvlist.clear();
+        tvlist.add(tv);
       });
 
       final failureorposterEntity =
@@ -36,8 +39,8 @@ class HomeBlocBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
       failureorposterEntity.fold(
           (failure) => emit(HomeBlocErrorState(message: _mapfailure(failure))),
           (movie) {
-        posterlist.add(movie);
-        HomeBlocPosterlistState(posterlist: posterlist);
+        movielist.clear();
+        movielist.add(movie);
       });
 
       final faillureorhomeEntity =
@@ -46,8 +49,13 @@ class HomeBlocBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
       faillureorhomeEntity.fold(
           (failure) => emit(HomeBlocErrorState(message: _mapfailure(failure))),
           (popular) {
-        posterlist.add(popular);
-        HomeBlocPosterlistState(posterlist: posterlist);
+        popularlist.clear();
+        popularlist.add(popular);
+        emit(HomeBlocPosterlistState(
+            trendinglist: trendinglist,
+            tvlist: tvlist,
+            movielist: movielist,
+            popularlist: popularlist));
       });
     });
   }

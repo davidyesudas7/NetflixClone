@@ -42,7 +42,7 @@ class NumberCard extends StatelessWidget {
                   color: Colors.red,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(posterpath),
+                    image: NetworkImage('$imagestraturl$posterpath'),
                   ),
                   borderRadius: kBorderradius10),
             ),

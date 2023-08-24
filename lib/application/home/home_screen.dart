@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nextflix_clone/application/common_widgets&constants/Main_title_card.dart';
+import 'package:nextflix_clone/application/common_widgets&constants/main_card.dart';
+import 'package:nextflix_clone/application/common_widgets&constants/main_title_card.dart';
+
 import 'package:nextflix_clone/application/home/bloc/home_bloc_bloc.dart';
 import 'package:nextflix_clone/application/home/widgets/background_image_card.dart';
 import 'package:nextflix_clone/application/home/widgets/custum_appbar.dart';
+import 'package:nextflix_clone/application/home/widgets/number_card.dart';
 import 'package:nextflix_clone/application/home/widgets/number_title_card.dart';
 
 ValueNotifier<bool> scrollnotifier = ValueNotifier(true);
@@ -49,31 +52,63 @@ class Homescreen extends StatelessWidget {
                         children: [
                           BackgroundImageCard(
                             backgroundimage:
-                                state.posterlist[1].results[0].posterPath,
+                                state.trendinglist[0].results[0].posterPath,
                           ),
                           MainTitleCard(
-                            posterlist: state.posterlist[0].results,
-                            title: 'Supernatural Tv Shows',
+                            title: 'Trendin Now',
+                            mainCards: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.trendinglist[0].results.length,
+                              itemBuilder: (context, index) => MainCard(
+                                  posterimage: state.trendinglist[0]
+                                      .results[index].posterPath),
+                            ),
                           ),
                           MainTitleCard(
-                            posterlist: state.posterlist[1].results,
-                            title: 'Trending Now',
+                            title: 'Popular Tv Shows',
+                            mainCards: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.tvlist[0].results.length,
+                              itemBuilder: (context, index) => MainCard(
+                                  posterimage: state
+                                      .tvlist[0].results[index].posterPath),
+                            ),
                           ),
                           MainTitleCard(
-                            posterlist: state.posterlist[2].results,
-                            title: 'Anime',
+                            title: 'Favourite Movies',
+                            mainCards: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.movielist[0].results.length,
+                              itemBuilder: (context, index) => MainCard(
+                                  posterimage: state
+                                      .movielist[0].results[index].posterPath),
+                            ),
                           ),
                           MainTitleCard(
-                            posterlist: state.posterlist[3].results,
-                            title: 'Hindi Movies&Tv',
-                          ),
-                          MainTitleCard(
-                            posterlist: state.posterlist[2].results,
-                            title: 'Epic Worlds',
+                            title: 'Most Popular',
+                            mainCards: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.popularlist[0].results.length,
+                              itemBuilder: (context, index) => MainCard(
+                                  posterimage: state.popularlist[0]
+                                      .results[index].posterPath),
+                            ),
                           ),
                           NumberTitleCard(
-                            posterlist: state.posterlist[1].results,
-                          )
+                            numberCards: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 10,
+                              itemBuilder: (context, index) => NumberCard(
+                                  index: index,
+                                  posterpath: state
+                                      .movielist[0].results[index].posterPath),
+                            ),
+                          ),
                         ],
                       ),
                       const CustumAppBar()

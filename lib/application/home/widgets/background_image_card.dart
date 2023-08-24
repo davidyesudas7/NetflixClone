@@ -23,20 +23,23 @@ class BackgroundImageCard extends StatelessWidget {
                   fit: BoxFit.fill,
                   image: NetworkImage('$imagestraturl$backgroundimage'))),
         ),
-        const Positioned(
+        Positioned(
           bottom: 0,
           left: 0,
           right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CustomButton(
-                buttonname: 'My List',
-                icon: Icons.add,
-              ),
-              PlayButton(),
-              CustomButton(icon: Icons.info_outline, buttonname: 'info')
-            ],
+          child: Container(
+            color: Colors.black.withOpacity(0.5),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomButton(
+                  buttonname: 'My List',
+                  icon: Icons.add,
+                ),
+                PlayButton(),
+                CustomButton(icon: Icons.info_outline, buttonname: 'info')
+              ],
+            ),
           ),
         )
       ],

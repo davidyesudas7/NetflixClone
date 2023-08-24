@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_title_text.dart';
-import 'package:nextflix_clone/application/home/widgets/number_card.dart';
-import 'package:nextflix_clone/data/Homedata/home_page_model.dart';
 
 class NumberTitleCard extends StatelessWidget {
   const NumberTitleCard({
     super.key,
-    required this.posterlist,
+    required this.numberCards,
   });
 
-  final List<HomeResult> posterlist;
+  final ListView numberCards;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +22,7 @@ class NumberTitleCard extends StatelessWidget {
           ),
           LimitedBox(
             maxHeight: 150,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.generate(
-                  posterlist.length,
-                  (index) => NumberCard(
-                        index: index,
-                        posterpath:
-                            '$imagestraturl${posterlist[index].posterPath}',
-                      )),
-            ),
+            child: numberCards,
           ),
           kHeight
         ],

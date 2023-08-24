@@ -2,17 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
-import 'package:nextflix_clone/application/common_widgets&constants/main_card.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_title_text.dart';
-import 'package:nextflix_clone/data/Homedata/home_page_model.dart';
 
 class MainTitleCard extends StatelessWidget {
   const MainTitleCard({
     super.key,
     required this.title,
-    required this.posterlist,
+    required this.mainCards,
   });
-  final List<HomeResult> posterlist;
+  final ListView mainCards;
 
   final String title;
   @override
@@ -25,17 +23,7 @@ class MainTitleCard extends StatelessWidget {
           MainTitleText(
             title: title,
           ),
-          LimitedBox(
-            maxHeight: 150,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.generate(
-                  posterlist.length,
-                  (index) => MainCard(
-                        posterimage: posterlist[index].posterPath,
-                      )),
-            ),
-          ),
+          LimitedBox(maxHeight: 150, child: mainCards),
           kHeight
         ],
       ),
