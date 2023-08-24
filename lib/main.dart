@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nextflix_clone/application/downloades/bloc/download_bloc.dart';
+import 'package:nextflix_clone/application/home/bloc/home_bloc_bloc.dart';
 import 'package:nextflix_clone/application/mainpage/main_screen.dart';
 import 'package:nextflix_clone/application/search/bloc/search_bloc.dart';
 import 'package:nextflix_clone/core/injections.dart' as di;
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<SearchBloc>(),
         ),
+        BlocProvider(
+          create: (context) => sl<HomeBlocBloc>(),
+          child: Container(),
+        )
       ],
       child: MaterialApp(
           title: 'Neflix Clone',

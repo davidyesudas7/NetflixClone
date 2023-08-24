@@ -18,7 +18,7 @@ class MainCard extends StatelessWidget {
           color: Colors.red,
           image: DecorationImage(
             fit: BoxFit.fitHeight,
-            image: NetworkImage(posterimage),
+            image: NetworkImage('$imagestraturl$posterimage'),
           ),
           borderRadius: kBorderradius10),
     );

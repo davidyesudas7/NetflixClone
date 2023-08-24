@@ -9,3 +9,5 @@ const String onsearchurl = '$baseurl/search/movie?$apikey';
 const String newmovieurl = '$baseurl/discover/movie?$apikey';
 
 const String newtvurl = '$baseurl/discover/tv?$apikey';
+
+const String homeurl = '$baseurl/movie/now_playing?$apikey';

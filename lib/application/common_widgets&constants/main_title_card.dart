@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_card.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/main_title_text.dart';
+import 'package:nextflix_clone/data/Homedata/home_page_model.dart';
 
 class MainTitleCard extends StatelessWidget {
   const MainTitleCard({
     super.key,
     required this.title,
+    required this.posterlist,
   });
+  final List<HomeResult> posterlist;
 
   final String title;
   @override
@@ -27,10 +30,9 @@ class MainTitleCard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                  10,
-                  (index) => const MainCard(
-                        posterimage:
-                            'https://image.tmdb.org/t/p/original/e3NBGiAifW9Xt8xD5tpARskjccO.jpg',
+                  posterlist.length,
+                  (index) => MainCard(
+                        posterimage: posterlist[index].posterPath,
                       )),
             ),
           ),

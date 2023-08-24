@@ -24,7 +24,7 @@ class SearchIdleWidget extends StatelessWidget {
             } else if (state is SearchInitializedState) {
               return ListView.separated(
                   itemBuilder: (context, index) {
-                    print(state.initialdata[index]!.maintitle.toString());
+                    debugPrint(state.initialdata[index]!.maintitle.toString());
                     return SearchIdleCard(
                       posterimage:
                           '$imagestraturl${state.initialdata[index]!.posterpath}',

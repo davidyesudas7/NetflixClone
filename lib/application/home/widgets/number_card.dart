@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 
 class NumberCard extends StatelessWidget {
-  const NumberCard({super.key, required this.index});
+  const NumberCard({super.key, required this.index, required this.posterpath});
   final int index;
+  final String posterpath;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -39,10 +40,9 @@ class NumberCard extends StatelessWidget {
               width: 100,
               decoration: BoxDecoration(
                   color: Colors.red,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://image.tmdb.org/t/p/w300_and_h450_bestv2/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg'),
+                    image: NetworkImage(posterpath),
                   ),
                   borderRadius: kBorderradius10),
             ),
