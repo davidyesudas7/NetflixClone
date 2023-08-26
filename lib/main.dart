@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nextflix_clone/application/downloades/bloc/download_bloc.dart';
 import 'package:nextflix_clone/application/home/bloc/home_bloc_bloc.dart';
 import 'package:nextflix_clone/application/mainpage/main_screen.dart';
+import 'package:nextflix_clone/application/new&hot/bloc/new_and_hot_bloc.dart';
 import 'package:nextflix_clone/application/search/bloc/search_bloc.dart';
 import 'package:nextflix_clone/core/injections.dart' as di;
 import 'package:nextflix_clone/core/injections.dart';
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<HomeBlocBloc>(),
+          child: Container(),
+        ),
+        BlocProvider(
+          create: (context) => sl<NewAndHotBloc>(),
           child: Container(),
         )
       ],

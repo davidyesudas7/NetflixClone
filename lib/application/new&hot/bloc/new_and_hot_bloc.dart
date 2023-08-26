@@ -24,7 +24,7 @@ class NewAndHotBloc extends Bloc<NewAndHotEvent, NewAndHotState> {
       final newmovielist = await newAndHotUscase.getmovierepodata();
       newmovielist.fold(
           (failure) => emit(NewAndHotErrorState(message: _mapfailure(failure))),
-          (movielist) => NewAndHotMovieLoadedState(movielist: movielist));
+          (movielist) => emit(NewAndHotMovieLoadedState(movielist: movielist)));
     });
   }
 

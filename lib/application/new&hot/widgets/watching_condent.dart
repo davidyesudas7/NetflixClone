@@ -6,8 +6,13 @@ import 'package:nextflix_clone/application/common_widgets&constants/constants.da
 class WatchingCondentCard extends StatelessWidget {
   const WatchingCondentCard({
     super.key,
+    required this.backgroundimage,
+    required this.tvname,
+    required this.tvdescription,
   });
-
+  final String backgroundimage;
+  final String tvname;
+  final String tvdescription;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,9 +32,7 @@ class WatchingCondentCard extends StatelessWidget {
                 height: 180,
                 decoration: BoxDecoration(borderRadius: kBorderradius10),
                 child: Image.network(
-                  fit: BoxFit.cover,
-                  'https://image.tmdb.org/t/p/w533_and_h300_bestv2/i2GVEvltEu3BXn5crBSxgKuTaca.jpg',
-                ),
+                    fit: BoxFit.cover, '$imagestraturl$backgroundimage'),
               ),
               Positioned(
                 bottom: 10,
@@ -50,11 +53,13 @@ class WatchingCondentCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(
-                'https://seeklogo.com/images/I/insidious-logo-79753F44E8-seeklogo.com.png',
-                height: 50,
-                width: 150,
-              ),
+              Expanded(
+                  child: Text(
+                overflow: TextOverflow.ellipsis,
+                tvname,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              )),
               const CustomButton(
                 buttonname: 'Share',
                 icon: Icons.share,
@@ -70,9 +75,12 @@ class WatchingCondentCard extends StatelessWidget {
             ],
           ),
           kHeight20,
-          const Text(
-            'To put their demons to rest once and for all, Josh Lambert and a college-aged Dalton Lambert must go deeper into The Further than ever before, facing their family\'s dark past and a host of new and more horrifying terrors that lurk behind the red door.',
-            style: TextStyle(fontSize: 12, color: kGreycolor),
+          Expanded(
+            child: Text(
+              overflow: TextOverflow.clip,
+              tvdescription,
+              style: const TextStyle(fontSize: 12, color: kGreycolor),
+            ),
           ),
         ],
       ),

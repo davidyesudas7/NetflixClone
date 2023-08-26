@@ -45,6 +45,11 @@ class Homescreen extends StatelessWidget {
                   child: Text(state.message),
                 );
               } else if (state is HomeBlocPosterlistState) {
+                if (state.trendinglist.isEmpty) {
+                  return const Center(
+                    child: Text('sorry something wrong please try to restart'),
+                  );
+                }
                 return SizedBox(
                   child: Stack(
                     children: [

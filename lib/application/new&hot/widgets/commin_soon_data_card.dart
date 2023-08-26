@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
+
 import 'package:nextflix_clone/application/colors/colors.dart';
 import 'package:nextflix_clone/application/common_widgets&constants/constants.dart';
 
+// 'https://image.tmdb.org/t/p/original/qWiUnM2CEoYQ3pzpB9TBVV2r8L5.jpg',background image demo
 class CommingSoonDataCard extends StatelessWidget {
   const CommingSoonDataCard({
     super.key,
+    required this.backgroundimage,
+    required this.moviename,
+    required this.moviedescription,
+    required this.releasemonth,
+    required this.releaseday,
   });
-
+  final String backgroundimage;
+  final String moviename;
+  final String moviedescription;
+  final String releasemonth;
+  final String releaseday;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
       height: 400,
-      child: const Padding(
-        padding: EdgeInsets.only(top: 10),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
         child: Row(
-          children: [ReleaseDate(), ReleaseCondet()],
+          children: [
+            ReleaseDate(releasemonth: releasemonth, releaseday: releaseday),
+            ReleaseCondet(
+              moviename: moviename,
+              backgroundimage: backgroundimage,
+              moviedescription: moviedescription,
+            )
+          ],
         ),
       ),
     );
@@ -26,7 +44,13 @@ class CommingSoonDataCard extends StatelessWidget {
 class ReleaseCondet extends StatelessWidget {
   const ReleaseCondet({
     super.key,
+    required this.backgroundimage,
+    required this.moviename,
+    required this.moviedescription,
   });
+  final String backgroundimage;
+  final String moviename;
+  final String moviedescription;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +66,7 @@ class ReleaseCondet extends StatelessWidget {
                 height: 180,
                 decoration: BoxDecoration(borderRadius: kBorderradius10),
                 child: Image.network(
-                  fit: BoxFit.cover,
-                  'https://image.tmdb.org/t/p/original/qWiUnM2CEoYQ3pzpB9TBVV2r8L5.jpg',
-                ),
+                    fit: BoxFit.cover, '$imagestraturl$backgroundimage'),
               ),
               Positioned(
                 bottom: 10,
@@ -65,11 +87,13 @@ class ReleaseCondet extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/One_Piece_Logo.svg/1200px-One_Piece_Logo.svg.png',
-                height: 50,
-                width: 150,
-              ),
+              Expanded(
+                  child: Text(
+                overflow: TextOverflow.ellipsis,
+                moviename,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              )),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(
@@ -92,9 +116,12 @@ class ReleaseCondet extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           kHeight,
-          const Text(
-            'Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous "One Piece" behind. Whoever claims the "One Piece" will be named the new King of the Pirates.',
-            style: TextStyle(fontSize: 12, color: kGreycolor),
+          Expanded(
+            child: Text(
+              overflow: TextOverflow.clip,
+              moviedescription,
+              style: const TextStyle(fontSize: 12, color: kGreycolor),
+            ),
           ),
           kHeight
         ],
@@ -106,23 +133,26 @@ class ReleaseCondet extends StatelessWidget {
 class ReleaseDate extends StatelessWidget {
   const ReleaseDate({
     super.key,
+    required this.releasemonth,
+    required this.releaseday,
   });
-
+  final String releasemonth;
+  final String releaseday;
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
         flex: 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'SEP',
-              style: TextStyle(
+              releasemonth,
+              style: const TextStyle(
                   fontSize: 14, fontWeight: FontWeight.bold, color: kGreycolor),
             ),
             Text(
-              '01',
-              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              releaseday,
+              style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             )
           ],
         ));

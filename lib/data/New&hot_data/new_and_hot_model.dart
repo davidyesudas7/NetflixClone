@@ -1,8 +1,6 @@
 // To parse this JSON data, do
 //
-//     final newAndHotMo = newAndHotMoFromJson(jsonString);
-
-// ignore_for_file: overridden_fields
+//     final newAndHotMo = newAndHotModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -15,15 +13,15 @@ NewAndHotModel newAndHotModelFromJson(String str) =>
 String newAndHotModelToJson(NewAndHotModel data) => json.encode(data.toJson());
 
 class NewAndHotModel {
-  final List<NewHotData> results;
+  final List<Result> results;
 
   NewAndHotModel({
     required this.results,
   });
 
   factory NewAndHotModel.fromJson(Map<String, dynamic> json) => NewAndHotModel(
-        results: List<NewHotData>.from(
-            json["results"].map((x) => NewHotData.fromJson(x))),
+        results:
+            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,42 +29,42 @@ class NewAndHotModel {
       };
 }
 
-class NewHotData extends NewAndHotEntity with EquatableMixin {
-  @override
+class Result extends NewAndHotEntity with EquatableMixin {
   final String backdropPath;
-  @override
   final int id;
-  @override
+  final String originalName;
   final String originalTitle;
-  @override
   final String overview;
-  @override
   final DateTime releaseDate;
 
-  NewHotData({
+  Result({
     required this.backdropPath,
     required this.id,
+    required this.originalName,
     required this.originalTitle,
     required this.overview,
     required this.releaseDate,
   }) : super(
             backdropPath: backdropPath,
             id: id,
+            originalName: originalName,
             originalTitle: originalTitle,
             overview: overview,
             releaseDate: releaseDate);
 
-  factory NewHotData.fromJson(Map<String, dynamic> json) => NewHotData(
-        backdropPath: json["backdrop_path"],
-        id: json["id"],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
-        releaseDate: DateTime.parse(json["release_date"]),
+  factory Result.fromJson(Map<String, dynamic> json) => Result(
+        backdropPath: json["backdrop_path"] ?? '',
+        id: json["id"] ?? '',
+        originalName: json["original_name"] ?? '',
+        originalTitle: json["original_title"] ?? '',
+        overview: json["overview"] ?? '',
+        releaseDate: DateTime.parse(json["release_date"] ?? '0000-00-00'),
       );
 
   Map<String, dynamic> toJson() => {
         "backdrop_path": backdropPath,
         "id": id,
+        "original_name": originalName,
         "original_title": originalTitle,
         "overview": overview,
         "release_date":

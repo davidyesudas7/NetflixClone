@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:nextflix_clone/core/exceptions.dart';
 import 'package:nextflix_clone/data/New&hot_data/datasource/new_and_hot_remot_data.dart';
@@ -19,6 +21,7 @@ class NewAndHotRepoImpl implements NewAndHotRepo {
     } on ServerException catch (_) {
       return left(ServerFailure());
     } catch (e) {
+      log(e.toString());
       return left(GeneralaFailure());
     }
   }
