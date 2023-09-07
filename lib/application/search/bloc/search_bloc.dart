@@ -26,12 +26,21 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     on<OnSearchingEvent>((event, emit) async {
       emit(Searchloading());
-      final failurorsearchdata =
-          await onSearchUscase.onsearch(event.searchvaue);
-      failurorsearchdata.fold(
-          (failure) =>
-              emit(SearchError(message: _maperrormessagestofailure(failure))),
-          (onserachdata) => emit(OnSearchloaded(onserachdata: onserachdata)));
+      if (event.searchvalue.isNotEmpty) {
+        final failurorsearchdata =
+            await onSearchUscase.onsearch(event.searchvalue);
+        failurorsearchdata.fold(
+            (failure) =>
+                emit(SearchError(message: _maperrormessagestofailure(failure))),
+            (onserachdata) => emit(OnSearchloaded(onserachdata: onserachdata)));
+      } else {
+        final failureorinitialsearch = await posterUsecase.getdownloadposter();
+        failureorinitialsearch.fold(
+            (failure) =>
+                emit(SearchError(message: _maperrormessagestofailure(failure))),
+            (serachdata) =>
+                emit(SearchInitializedState(initialdata: serachdata)));
+      }
     });
   }
 

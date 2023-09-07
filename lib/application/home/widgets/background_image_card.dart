@@ -20,7 +20,7 @@ class BackgroundImageCard extends StatelessWidget {
           height: 500,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: NetworkImage('$imagestraturl$backgroundimage'))),
         ),
         Positioned(

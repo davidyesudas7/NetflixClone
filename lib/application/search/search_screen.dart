@@ -35,7 +35,7 @@ class SearchScreen extends StatelessWidget {
             CupertinoSearchTextField(
               onChanged: (value) {
                 BlocProvider.of<SearchBloc>(context)
-                    .add(OnSearchingEvent(searchvaue: value));
+                    .add(OnSearchingEvent(searchvalue: value));
               },
               itemColor: Colors.white,
               style: const TextStyle(color: kWhitecolor),
@@ -49,13 +49,9 @@ class SearchScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is OnSearchloaded) {
-                  if (state.onserachdata.isEmpty) {
-                    return const SearchIdleWidget();
-                  } else {
-                    return SearchOnchangedWidget(
-                      posterlist: state.onserachdata,
-                    );
-                  }
+                  return SearchOnchangedWidget(
+                    posterlist: state.onserachdata,
+                  );
                 } else if (state is SearchError) {
                   return Center(
                     child: Text(state.message),

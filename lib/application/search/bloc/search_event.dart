@@ -10,10 +10,10 @@ sealed class SearchEvent extends Equatable {
 class SearchInitializedEvent extends SearchEvent {}
 
 class OnSearchingEvent extends SearchEvent {
-  final String searchvaue;
+  final String searchvalue;
 
-  const OnSearchingEvent({required this.searchvaue});
+  const OnSearchingEvent({required this.searchvalue});
 
   @override
-  List<Object> get props => [searchvaue];
+  List<Object> get props => [searchvalue];
 }
